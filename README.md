@@ -1,165 +1,184 @@
-✦ Resume Analyzer
-AI-powered ATS scoring, keyword analysis, and resume builder — all in one place.
-Upload your resume. Paste a job description. Get a detailed ATS score, missing keyword report, section-wise breakdown, and smart recommendations — instantly.
-<br />
-Features · Tech Stack · Getting Started · API Reference · Roadmap
+# 🚀 Resume Analyzer (ATS Scoring)
 
-</div>
-✨ Features
-FeatureDescription🔐 Secure AuthJWT-based login with access & refresh token rotation📄 Resume UploadSupports PDF & DOCX with automatic text extraction🤖 AI ATS ScoringLLM-powered analysis with an overall ATS score📊 Section BreakdownIndividual scores for skills, experience, education & more🔍 Keyword DetectionIdentifies missing keywords from the job description💡 Smart RecommendationsActionable suggestions to improve your resume✏️ Resume BuilderCreate a polished resume from scratch directly in the app🕘 History TrackingView, revisit, and delete past analysis reports🎨 Modern UISmooth animations, score indicators, and a clean interface
+A full-stack web application that evaluates resumes against job descriptions and generates an **ATS-style analysis report** with scores, missing keywords, and actionable recommendations.
 
-🛠 Tech Stack
-<table>
-<tr>
-<td valign="top" width="50%">
-Backend
+---
 
-Runtime — Node.js >= 22
-Framework — Express
-Database — MongoDB + Mongoose
-Validation — Zod
-AI / LLM — Groq API (llama-3.1-8b-instant)
-Auth — JWT (access + refresh tokens)
+## ✨ Features
 
-</td>
-<td valign="top" width="50%">
-Frontend
+- 🔐 Secure authentication (JWT + refresh tokens)
+- 📄 Resume upload (PDF / DOCX) with text extraction
+- 📊 ATS score with section-wise breakdown
+- 🔍 Missing keyword detection
+- 💡 Smart recommendations
+- 🕘 History tracking (view & delete reports)
+- 🎨 Modern UI with animations and score indicators
 
-Framework — React + Vite
-HTTP — Custom fetch wrapper with auto token refresh
-Styling — Modern CSS with animations & score indicators
+---
 
-</td>
-</tr>
-</table>
+## 🛠 Tech Stack
 
-📁 Project Structure
+### Backend
+- Node.js + Express
+- MongoDB + Mongoose
+- Zod (validation)
+- Groq API (LLM scoring)
+
+### Frontend
+- React + Vite
+- Fetch wrapper (auto token refresh)
+
+---
+
+## 📁 Project Structure
+
 resume-analyzer/
-├── backend/                  # Express REST API
-│   ├── src/
-│   │   ├── routes/           # Auth & analysis routes
-│   │   ├── controllers/      # Business logic
-│   │   ├── models/           # Mongoose schemas
-│   │   ├── middleware/        # Auth, validation, error handling
-│   │   └── services/         # Groq AI, file parsing
-│   └── .env                  # Environment variables
 │
-├── frontend/                 # React + Vite app
-│   ├── src/
-│   │   ├── pages/            # Dashboard, Analyze, Builder, History
-│   │   ├── components/       # Reusable UI components
-│   │   └── lib/              # Fetch wrapper, helpers
-│   └── .env                  # Vite env vars
-│
+├── backend/      # Express API
+├── frontend/     # React app
 └── README.md
 
-Prerequisites
-Before you begin, make sure you have:
+---
 
-Node.js >= 22
-MongoDB (local instance or MongoDB Atlas)
-Groq API Key — get one free at console.groq.com
+## ⚙️ Prerequisites
 
+- Node.js >= 22
+- MongoDB (local or cloud)
+- Groq API Key
 
-🚀 Getting Started
-1 · Clone the repository
-bashgit clone https://github.com/your-username/resume-analyzer.git
-cd resume-analyzer
+---
 
-2 · Backend Setup
-bashcd backend
+## 🚀 Setup
+
+### 1️⃣ Backend Setup
+
+Run:
+
+cd backend
 npm install
-Create a .env file inside the backend/ folder:
-env# Server
-NODE_ENV=development
-PORT=5000
 
-# Database
-MONGODB_URI=mongodb://127.0.0.1:27017/resumeanalyser
+Create `.env` file inside backend folder:
 
-# Auth
-JWT_ACCESS_SECRET=your_access_secret_here
-JWT_REFRESH_SECRET=your_refresh_secret_here
+NODE_ENV=development  
+PORT=5000  
+MONGODB_URI=mongodb://127.0.0.1:27017/resumeanalyser  
 
-# AI
-GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=llama-3.1-8b-instant
+JWT_ACCESS_SECRET=your_access_secret  
+JWT_REFRESH_SECRET=your_refresh_secret  
 
-# CORS
-CLIENT_ORIGIN=http://localhost:5173
+GROQ_API_KEY=your_groq_api_key  
+GROQ_MODEL=llama-3.1-8b-instant  
 
-# File Upload
-FILE_MAX_BYTES=5242880
-FILE_ALLOWED_MIMETYPES=application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document
-Start the backend server:
-bashnpm start
+CLIENT_ORIGIN=http://localhost:5173  
 
-Backend running at http://localhost:5000
+FILE_MAX_BYTES=5242880  
+FILE_ALLOWED_MIMETYPES=application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document  
 
+Start backend:
 
-3 · Frontend Setup
-bashcd frontend
-npm install
-Optionally, create a .env file inside frontend/:
-envVITE_API_BASE_URL=http://localhost:5000
-Start the dev server:
-bashnpm run dev
+npm start
 
-Frontend running at http://localhost:5173
+👉 Backend runs on: http://localhost:5000
 
+---
 
-🌐 API Reference
-Base URL: http://localhost:5000/api
-🔐 Auth Routes
-MethodEndpointDescriptionPOST/auth/signupRegister a new userPOST/auth/loginLogin and receive tokensPOST/auth/refreshRefresh the access tokenPOST/auth/logoutLogout and invalidate tokens
+### 2️⃣ Frontend Setup
 
-📊 Analysis Routes
+Run:
 
-All routes require: Authorization: Bearer <accessToken>
+cd frontend  
+npm install  
 
-MethodEndpointDescriptionPOST/analysis/analyzeUpload resume + job description for ATS analysisGET/analysis/historyFetch all past analysis reportsGET/analysis/report/:reportIdGet a specific report by IDDELETE/analysis/report/:reportIdDelete a report by ID
+(Optional) Create `.env` in frontend:
 
-🧪 Scripts
-Frontend
-bashnpm run dev       # Start dev server
-npm run build     # Build for production
-npm run lint      # Run ESLint
-Backend
-bashnpm start         # Start Express server
+VITE_API_BASE_URL=http://localhost:5000  
 
-Troubleshooting
-IssueCauseFix503 Database unavailableMongoDB not runningStart MongoDB locally or check your Atlas URIInvalid ATS JSONGroq model response malformedRetry the request or try a different model in .envBackend changes not appliedServer not restartedStop and re-run npm start401 UnauthorizedExpired or missing tokenRe-login; the frontend handles token refresh automatically
+Start frontend:
 
-🗺 Roadmap
+npm run dev  
 
- JWT auth with refresh tokens
- PDF & DOCX text extraction
- AI-powered ATS scoring
- Section-wise breakdown & recommendations
- Resume builder
- Report history with delete support
- Resume score visualization charts
- Multi-job comparison mode
- AI resume rewriting suggestions
- Export reports as PDF / Word
- Browser extension for one-click job analysis
+👉 Frontend runs on: http://localhost:5173
 
+---
 
-🤝 Contributing
-Contributions are welcome! Here's how to get started:
+## 🌐 API Overview
 
-Fork the repository
-Create a feature branch — git checkout -b feature/your-feature
-Commit your changes — git commit -m 'feat: add your feature'
-Push to the branch — git push origin feature/your-feature
-Open a Pull Request
+Base URL:  
+http://localhost:5000/api
 
-Please follow conventional commits and keep PRs focused on a single concern.
+---
 
-📜 License
-This project is licensed under the MIT License — see the LICENSE file for details.
+### 🔐 Auth Routes
 
-<div align="center">
-If this project helped you, consider giving it a ⭐ on GitHub — it means a lot!
-Built with Node.js · React · Groq AI
-</div>
+POST /auth/signup → Register user  
+POST /auth/login → Login user  
+POST /auth/refresh → Refresh token  
+POST /auth/logout → Logout  
+
+---
+
+### 📊 Analysis Routes (Protected)
+
+Header:  
+Authorization: Bearer <accessToken>
+
+POST /analysis/analyze → Upload resume + job description  
+GET /analysis/history → Get history  
+GET /analysis/report/:reportId → Get report  
+DELETE /analysis/report/:reportId → Delete report  
+
+---
+
+## 🧪 Scripts
+
+Frontend:
+
+npm run dev  
+npm run build  
+npm run lint  
+
+Backend:
+
+npm start  
+
+---
+
+## ⚠️ Troubleshooting
+
+- MongoDB not running → 503 Database unavailable  
+- Invalid ATS JSON → Model response format issue  
+- Backend changes not applied → Restart server  
+
+---
+
+## 💡 Future Improvements
+
+- Resume score visualization charts  
+- Multi-job comparison  
+- AI resume rewriting  
+- Export reports as PDF/Word  
+
+---
+
+## 🤝 Contributing
+
+Feel free to fork and submit pull requests.
+
+---
+
+## 📜 License
+
+MIT License
+
+---
+---
+
+## 💡 Author
+
+Developed by **Mahendra Harijan**
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
