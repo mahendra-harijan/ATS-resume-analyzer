@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<style>
+@page{ size:A4; margin:12mm; }
+html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+*{ box-sizing:border-box; }
+body{ font-family: Arial, Helvetica, sans-serif; font-size:10px; line-height:1.22; color:#111; }
+.container{ width:100%; max-width:190mm; margin:0 auto; }
+
+/* Target reference look (compact to force 1-page) */
+.resume{ width:100%; }
+.top{ text-align:center; margin-top:0; }
+.name{ font-size:15px; font-weight:700; color:#2f66d3; margin:0 0 2px 0; }
+.line1{ font-size:10px; color:#111; margin:0 0 4px 0; }
+.line2{ font-size:9.5px; color:#111; margin:0 0 6px 0; }
+.line2 a{ color:#2f66d3; text-decoration:none; font-weight:600; }
+.line2 .sep{ color:#111; margin:0 6px; }
+
+.section{ margin-top:8px; }
+.heading{ font-size:10px; font-weight:700; color:#2f66d3; text-transform:uppercase; letter-spacing:0.25px; margin:0 0 2px 0; }
+.divider{ border-top:1px solid #2b2b2b; margin:0 0 4px 0; }
+
+.dlist{ list-style:none; padding:0; margin:0; }
+.dlist > li{ display:flex; gap:7px; margin:0 0 3px 0; }
+.d{ width:13px; flex:0 0 13px; font-size:9px; margin-top:2px; }
+.c{ flex:1 1 auto; min-width:0; }
+
+.row{ display:flex; justify-content:space-between; gap:10px; }
+.left{ font-weight:700; }
+.right{ white-space:nowrap; font-size:9.5px; color:#333; }
+.stack{ font-style:italic; color:#444; font-size:9.5px; margin:1px 0 1px 0; }
+
+.bullets{ margin:1px 0 0 16px; padding:0; }
+.bullets li{ margin:0 0 1px 0; }
+
+/* Links in project title line */
+.plink a{ color:#2f66d3; text-decoration:none; font-weight:600; }
+</style>
+
+  <meta charset="utf-8" />
+  <style>
+    .resume {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .top {
+      text-align: center;
+    }
+    .name {
+      font-size: 24px;
+      color: blue;
+    }
+    .line1 {
+      font-size: 18px;
+    }
+    .line2 {
+      font-size: 18px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .heading {
+      text-align: left;
+      color: blue;
+    }
+    .divider {
+      height: 1px;
+      background-color: #ccc;
+      margin: 10px 0;
+    }
+    .dlist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dlist li {
+      margin-bottom: 10px;
+    }
+    .d {
+      font-size: 24px;
+      color: blue;
+    }
+    .c {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body><div class="container">
+  <div class="resume">
+    <div class="top">
+      <h1 class="name">**Mahendra Harijan**</h1>
+      <div class="line1">mahendra.harijan093@gmail.com | +91 9621932358</div>
+      <div class="line2"><a href="https://www.linkedin.com/in/mahendra-harijan/">LinkedIn</a> | <a href="https://github.com/mahendra-harijan/">GitHub</a></div>
+    </div>
+
+    <div class="section">
+      <div class="heading">EDUCATION</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">B.Tech in Computer Science and Engineering, Pandit Deendayal Energy University (PDEU)</div></li><li><span class="d">❖</span><div class="c">Class XII (NEB), Shree Ram Naresh Yadav Secondary School</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">TECHNICAL SKILLS</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Programming Languages: C, Java, Python, SQL</div></li><li><span class="d">❖</span><div class="c">Backend: Node.js, Express.js</div></li><li><span class="d">❖</span><div class="c">Frontend: HTML, CSS, JavaScript, React</div></li><li><span class="d">❖</span><div class="c">Database: MongoDB, MySQL</div></li><li><span class="d">❖</span><div class="c">Tools & Platforms: GitHub, Git, VS Code, Vercel, Render</div></li><li><span class="d">❖</span><div class="c">Concepts: REST APIs, Authentication & Authorization, MVC Architecture, CRUD Operations, Data Structures & Algorithms</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">ACADEMIC PROJECTS</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">StudyCraft – Productivity & Learning Platform (Jan–Mar 2026)</div>
+          <ul>
+            <li><span class="d">❖</span><div class="c">Built a full-stack productivity platform with authentication, scheduling, and task management</div></li><li><span class="d">❖</span><div class="c">Implemented secure authentication using JWT and bcrypt</div></li><li><span class="d">❖</span><div class="c">Developed a smart class scheduler with conflict detection and recurring scheduling</div></li></ul>
+        </li>
+        <li><span class="d">❖</span><div class="c">WandersStay – Property Listing Platform (Nov–Dec 2025)</div>
+          <ul>
+            <li><span class="d">❖</span><div class="c">Developed a full-stack web application for property listing and management</div></li>
+            <li><span class="d">❖</span><div class="c">Implemented authentication and authorization</div></li>
+            <li><span class="d">❖</span><div class="c">Built RESTful APIs for CRUD operations on listings and reviews</div></li>
+          </ul>
+        </li>
+        <li><span class="d">❖</span><div class="c">School Management System – Desktop Application (Aug–Sept 2023)</div>
+          <ul>
+            <li><span class="d">❖</span><div class="c">Developed a desktop system to manage students, teachers, and academic records</div></li>
+            <li><span class="d">❖</span><div class="c">Implemented role-based authentication (Admin, Teacher, Student)</div></li>
+            <li><span class="d">❖</span><div class="c">Integrated MySQL database for efficient data storage</div></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">DSA & PROBLEM SOLVING</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Solved 40+ problems on LeetCode</div></li><li><span class="d">❖</span><div class="c">Focus areas: Arrays, Strings, Recursion</div></li><li><span class="d">❖</span><div class="c">Strong understanding of time and space complexity</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">CERTIFICATIONS</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">NPTEL Ethical Hacking (Oct 2025)</div></li><li><span class="d">❖</span><div class="c">Apna College – Sigma 7.0 (Full Stack Development & DSA with Java) (2025)</div></li></ul>
+    </div>
+  </div>
+</body>
+</html>
