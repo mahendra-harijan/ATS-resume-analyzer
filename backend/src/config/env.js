@@ -73,11 +73,16 @@ if (!parsed.success) {
 
 const randomSecret = () => crypto.randomBytes(32).toString("hex");
 
+const isProd = parsed.data.NODE_ENV === "production";
+
 const env = {
   ...parsed.data,
-  MONGODB_URI: parsed.data.MONGODB_URI || "mongodb://127.0.0.1:27017/resumeanalyser",
-  JWT_ACCESS_SECRET: parsed.data.JWT_ACCESS_SECRET || randomSecret(),
-  JWT_REFRESH_SECRET: parsed.data.JWT_REFRESH_SECRET || randomSecret(),
+  // In production, required values must be explicitly configured.
+  // In development/test, we provide safe-ish defaults for local boot.
+  MONGODB_URI:
+    parsed.data.MONGODB_URI || (isProd ? undefined : "mongodb://127.0.0.1:27017/resumeanalyser"),
+  JWT_ACCESS_SECRET: parsed.data.JWT_ACCESS_SECRET || (isProd ? undefined : randomSecret()),
+  JWT_REFRESH_SECRET: parsed.data.JWT_REFRESH_SECRET || (isProd ? undefined : randomSecret()),
   // Keep empty/undefined to mean "disabled".
   GROQ_API_KEY: parsed.data.GROQ_API_KEY || parsed.data.GEMINI_API_KEY || undefined,
   GROQ_MODEL: parsed.data.GROQ_MODEL || parsed.data.GEMINI_MODEL || "llama-3.1-8b-instant",

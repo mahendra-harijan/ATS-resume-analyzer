@@ -119,6 +119,54 @@ POST /auth/logout → Logout
 
 ### 📊 Analysis Routes (Protected)
 
+---
+
+## ✅ Production Deploy (Vercel + Render)
+
+### Backend on Render
+
+1) Push your code to GitHub.
+
+2) Create a Render **Web Service**:
+- **Root Directory**: `backend`
+- **Runtime**: Node
+- **Build Command**: `npm install`
+- **Start Command**: `npm start`
+
+3) Set environment variables in Render (Service → Settings → Environment):
+- `NODE_ENV=production`
+- `CLIENT_ORIGIN=https://<your-vercel-app>.vercel.app`
+- `MONGODB_URI=<your mongo connection string>`
+- `JWT_ACCESS_SECRET=<long random secret>`
+- `JWT_REFRESH_SECRET=<long random secret>`
+- `GROQ_API_KEY=<your key>` (or `GEMINI_API_KEY` for backward compatibility)
+
+Notes:
+- This backend is **JWT-based**; you do **not** need `express-session` / `connect-mongo`.
+- In production, the backend will **fail fast** if required secrets are missing.
+
+Your backend URL will be like:
+- `https://<render-service-name>.onrender.com`
+
+### Frontend on Vercel
+
+1) Import the repo into Vercel.
+
+2) Project settings:
+- **Root Directory**: `frontend`
+- Framework: **Vite**
+- Build Command: `npm run build`
+- Output Directory: `dist`
+
+3) Set environment variables in Vercel (Project → Settings → Environment Variables):
+- `VITE_API_BASE_URL=https://<render-service-name>.onrender.com`
+
+### CORS wiring
+
+For production to work:
+- Backend `CLIENT_ORIGIN` must match your Vercel origin exactly.
+- Frontend `VITE_API_BASE_URL` must point to your Render backend.
+
 Header:  
 Authorization: Bearer <accessToken>
 

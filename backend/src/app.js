@@ -11,10 +11,16 @@ const errorMiddleware = require("./middleware/error.middleware");
 
 const app = express();
 
+// Render (and many managed platforms) sit behind a proxy/load balancer.
+// This makes req.ip and secure cookies behave correctly.
+if (env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 app.use(helmet());
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
 
 const corsOptions = {
   // In development we allow any origin (and reflect it back) to avoid
