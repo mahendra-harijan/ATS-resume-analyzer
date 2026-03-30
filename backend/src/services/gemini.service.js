@@ -44,19 +44,40 @@ function pickFallbackGroqModel(models) {
   return ids[0];
 }
 
-async function createChatCompletion({ apiKey, model, prompt }) {
+async function createChatCompletion({
+  apiKey,
+  model,
+  prompt,
+  jsonMode = true,
+  temperature = 0.2,
+  maxTokens = 2000,
+}) {
+  const payload = {
+    model,
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are a strict JSON generator. Return a single JSON object only. Do not wrap in markdown or code fences.",
+      },
+      { role: "user", content: prompt },
+    ],
+    temperature,
+    max_tokens: maxTokens,
+  };
+
+  if (jsonMode) {
+    // Supported by many OpenAI-compatible providers for JSON-only responses.
+    payload.response_format = { type: "json_object" };
+  }
+
   const res = await fetch(GROQ_CHAT_COMPLETIONS_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      model,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.2,
-      max_tokens: 1200,
-    }),
+    body: JSON.stringify(payload),
   });
 
   const data = await res.json().catch(() => ({}));
@@ -82,20 +103,67 @@ async function analyzeResume({ resumeText, jobDescription }) {
 
   let data;
   try {
-    data = await createChatCompletion({ apiKey: env.GROQ_API_KEY, model: env.GROQ_MODEL, prompt });
+    try {
+      data = await createChatCompletion({
+        apiKey: env.GROQ_API_KEY,
+        model: env.GROQ_MODEL,
+        prompt,
+        jsonMode: true,
+      });
+    } catch (err) {
+      // Some models/providers may not support response_format.
+      if (err?.statusCode === 400) {
+        data = await createChatCompletion({
+          apiKey: env.GROQ_API_KEY,
+          model: env.GROQ_MODEL,
+          prompt,
+          jsonMode: false,
+        });
+      } else {
+        throw err;
+      }
+    }
   } catch (e) {
     if (e?.statusCode === 404) {
       const models = await listGroqModels(env.GROQ_API_KEY);
       const fallback = pickFallbackGroqModel(models);
       if (!fallback) throw e;
-      data = await createChatCompletion({ apiKey: env.GROQ_API_KEY, model: fallback, prompt });
+      // Try JSON mode first on the fallback model, then plain mode if unsupported.
+      try {
+        data = await createChatCompletion({ apiKey: env.GROQ_API_KEY, model: fallback, prompt, jsonMode: true });
+      } catch (err) {
+        if (err?.statusCode === 400) {
+          data = await createChatCompletion({ apiKey: env.GROQ_API_KEY, model: fallback, prompt, jsonMode: false });
+        } else {
+          throw err;
+        }
+      }
     } else {
       throw e;
     }
   }
 
   const text = data?.choices?.[0]?.message?.content || "";
-  return extractJsonObject(text);
+
+  try {
+    return extractJsonObject(text);
+  } catch (err) {
+    // One retry with stricter settings to handle models that occasionally add extra text.
+    try {
+      const retry = await createChatCompletion({
+        apiKey: env.GROQ_API_KEY,
+        model: env.GROQ_MODEL,
+        prompt,
+        jsonMode: true,
+        temperature: 0,
+        maxTokens: 2500,
+      });
+      const retryText = retry?.choices?.[0]?.message?.content || "";
+      return extractJsonObject(retryText);
+    } catch {
+      throw err;
+    }
+  }
 }
 
 module.exports = { analyzeResume };

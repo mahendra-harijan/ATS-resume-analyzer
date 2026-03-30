@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<style>
+@page{ size:A4; margin:12mm; }
+html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+*{ box-sizing:border-box; }
+body{ font-family: Arial, Helvetica, sans-serif; font-size:10px; line-height:1.22; color:#111; }
+.container{ width:100%; max-width:190mm; margin:0 auto; }
+
+/* Target reference look (compact to force 1-page) */
+.resume{ width:100%; }
+.top{ text-align:center; margin-top:0; }
+.name{ font-size:15px; font-weight:700; color:#2f66d3; margin:0 0 2px 0; }
+.line1{ font-size:10px; color:#111; margin:0 0 4px 0; }
+.line2{ font-size:9.5px; color:#111; margin:0 0 6px 0; }
+.line2 a{ color:#2f66d3; text-decoration:none; font-weight:600; }
+.line2 .sep{ color:#111; margin:0 6px; }
+
+.section{ margin-top:8px; }
+.heading{ font-size:10px; font-weight:700; color:#2f66d3; text-transform:uppercase; letter-spacing:0.25px; margin:0 0 2px 0; }
+.divider{ border-top:1px solid #2b2b2b; margin:0 0 4px 0; }
+
+.dlist{ list-style:none; padding:0; margin:0; }
+.dlist > li{ display:flex; gap:7px; margin:0 0 3px 0; }
+.d{ width:13px; flex:0 0 13px; font-size:9px; margin-top:2px; }
+.c{ flex:1 1 auto; min-width:0; }
+
+.row{ display:flex; justify-content:space-between; gap:10px; }
+.left{ font-weight:700; }
+.right{ white-space:nowrap; font-size:9.5px; color:#333; }
+.stack{ font-style:italic; color:#444; font-size:9.5px; margin:1px 0 1px 0; }
+
+.bullets{ margin:1px 0 0 16px; padding:0; }
+.bullets li{ margin:0 0 1px 0; }
+
+/* Links in project title line */
+.plink a{ color:#2f66d3; text-decoration:none; font-weight:600; }
+</style>
+
+  <meta charset="utf-8" />
+  <style>
+    .resume {
+      width: 80%;
+      margin: 40px auto;
+    }
+    .top {
+      text-align: center;
+    }
+    .name {
+      font-size: 24px;
+      color: blue;
+    }
+    .line1 {
+      font-size: 18px;
+    }
+    .line2 {
+      font-size: 18px;
+    }
+    .line2 a {
+      text-decoration: none;
+      color: blue;
+    }
+    .line2 a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      margin-top: 40px;
+    }
+    .heading {
+      text-align: left;
+      font-size: 24px;
+      color: blue;
+    }
+    .divider {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .dlist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dlist li {
+      margin-bottom: 10px;
+    }
+    .dlist li .d {
+      font-size: 24px;
+      color: blue;
+    }
+    .c {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body><div class="container">
+  <div class="resume">
+    <div class="top">
+      <h1 class="name">**Rahul Sharma**</h1>
+      <div class="line1">email | phone</div>
+      <div class="line2"><a>github</a> <span class="sep">|</span> <a>linkedin</a></div>
+    </div>
+
+    <div class="section">
+      <div class="heading">EDUCATION</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Bachelor's degree in Computer Science</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">TECHNICAL SKILLS</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Strong knowledge of SQL (queries, joins, aggregation)</div></li><li><span class="d">❖</span><div class="c">Proficiency in Excel (Pivot Tables, VLOOKUP, formulas)</div></li><li><span class="d">❖</span><div class="c">Experience with Python for data analysis</div></li><li><span class="d">❖</span><div class="c">Familiarity with data visualization tools (Power BI / Tableau)</div></li><li><span class="d">❖</span><div class="c">Understanding of statistics and data modeling</div></li><li><span class="d">❖</span><div class="c">Basic knowledge of databases (MySQL)</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">ACADEMIC PROJECTS</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Developed a data analysis project using Python and SQL to analyze customer behavior</div></li><li><span class="d">❖</span><div class="c">Created a data visualization dashboard using Power BI to display sales trends</div></li><li><span class="d">❖</span><div class="c">Designed and implemented a database system using MySQL to store customer data</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">DSA & Problem Solving</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Solved complex problems using data structures and algorithms</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">CERTIFICATION</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Certified Data Analyst</div></li></ul>
+    </div>
+
+    <div class="section">
+      <div class="heading">USER DETAILS</div>
+      <div class="divider"></div>
+      <ul class="dlist"><li><span class="d">❖</span><div class="c">Personal Information (Sample)</div></li><li><span class="d">❖</span><div class="c">Detail-oriented and analytical Data Analyst with strong skills in SQL, Python, and data visualization</div></li></ul>
+    </div>
+  </div>
+</body>
+</html>
