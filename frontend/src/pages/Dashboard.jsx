@@ -6,28 +6,6 @@ import SectionScorePie from "../components/SectionScorePie";
 import KeywordGaps from "../components/KeywordGaps";
 import Recommendations from "../components/Recommendations";
 
-function clampScore(value) {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return 0;
-  return Math.max(0, Math.min(100, n));
-}
-
-function variantFromScore(score) {
-  const s = clampScore(score);
-  if (s >= 80) return "success";
-  if (s >= 60) return "warning";
-  return "danger";
-}
-
-function averageSectionScore(sectionScores) {
-  const s = sectionScores || {};
-  const values = [s.skills, s.experience, s.education, s.projects, s.keywordsMatch]
-    .map(clampScore)
-    .filter((n) => Number.isFinite(n));
-  if (values.length === 0) return 0;
-  return values.reduce((sum, n) => sum + n, 0) / values.length;
-}
-
 export default function Dashboard() {
   const [jobDescription, setJobDescription] = useState("");
   const [resumeFile, setResumeFile] = useState(null);

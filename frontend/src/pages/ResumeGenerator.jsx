@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { apiBaseUrl, apiFetch } from "../lib/api";
 
 function TextArea({ label, value, onChange, placeholder, rows = 6, icon }) {
@@ -67,9 +67,7 @@ export default function ResumeGenerator() {
   const [pdfUrl, setPdfUrl] = useState("");
   const [htmlUrl, setHtmlUrl] = useState("");
 
-  const downloadName = useMemo(() => {
-    return "generated_resume.pdf";
-  }, [userDetails]);
+  const downloadName = "generated_resume.pdf";
 
   const canDownload = Boolean(pdfUrl);
 

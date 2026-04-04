@@ -73,15 +73,15 @@ async function signup({ name, email, password, ip, userAgent }) {
 async function login({ email, password, ip, userAgent }) {
   const user = await User.findOne({ email });
   if (!user) {
-    const err = new Error("Invalid email or password");
-    err.statusCode = 401;
+    const err = new Error("User not found");
+    err.statusCode = 404;
     err.expose = true;
     throw err;
   }
 
   const ok = await bcrypt.compare(password, user.passwordHash);
   if (!ok) {
-    const err = new Error("Invalid email or password");
+    const err = new Error("Invalid username or password");
     err.statusCode = 401;
     err.expose = true;
     throw err;

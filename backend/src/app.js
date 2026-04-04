@@ -50,6 +50,11 @@ app.use("/generated", express.static(path.join(__dirname, "generated")));
 
 app.use("/api", apiRoutes);
 
+// Consistent JSON 404 for unknown API routes.
+app.use("/api", (req, res) => {
+  res.status(404).json({ success: false, message: "API route not found" });
+});
+
 app.use(errorMiddleware);
 
 module.exports = app;
